@@ -12,8 +12,27 @@ knitr::opts_chunk$set(echo = FALSE)
 
 
 ```{r}
+#libraries
+suppressWarnings(library(stringr))
 suppressWarnings(library(leaflet))
+suppressWarnings(library(tidyr))
 
-leaflet() %>% addTiles()
+
+# importing geo data
+url1 <- "https://opendata.paris.fr/explore/dataset/liste_des_sites_des_hotspots_paris_wifi/download/?format=csv&timezone=Asia/Baghdad&use_labels_for_header=true"
+wifi_df <- read.csv2(url(url1), stringsAsFactors = FALSE)
+
+
+wifi_df$lat <- str_split(wifi_df$geo_point_2d, 
+                         pattern = ", ", simplify = TRUE)[,1]
+
+wifi_df$lng <- str_split(wifi_df$geo_point_2d, 
+                         pattern = ", ", simplify = TRUE)[,2]
+
+df <- data.frame(lat = as.numeric(wifi_df$lat),
+                 lng = as.numeric(wifi_df$lng))
+
+df %>% leaflet() %>% addTiles() %>% addMarkers()
+
 ```
 
