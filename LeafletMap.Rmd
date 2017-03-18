@@ -1,0 +1,19 @@
+---
+title: "My Map with Leaflet"
+author: "Vadim K."
+date: '2017-03-18'
+output: html_document
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+```{r}
+suppressWarnings(library(leaflet))
+
+leaflet() %>% addTiles()
+```
+
