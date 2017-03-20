@@ -11,6 +11,10 @@ knitr::opts_chunk$set(echo = FALSE)
 ```
 
 
+### Paris Free Wifi Network
+
+Here below you can find an interactive map of Free public Wifi hotspots in Paris, France.  
+Hope it will be useful ;)
 ```{r}
 #libraries
 suppressWarnings(library(stringr))
@@ -36,9 +40,10 @@ df <- data.frame(lat = as.numeric(wifi_df$lat),
 
 #custom icon
 wifiIcon <- makeIcon(
-    iconUrl = "http://brand.jhu.edu/content/uploads/2014/06/university.shield.small_.blue_.png",
-    iconWidth = 31*215/230, iconHeight = 31,
-    iconAnchorX = 31*215/230/2, iconAnchorY = 16
+    iconUrl = "https://t0tem.github.io/DevDataProd_Assignment1/wifi_Logo.png",
+    iconWidth = 24, iconHeight = 24
+    #,
+    #iconAnchorX = 31*215/230/2, iconAnchorY = 16
 )
 
 df %>% 
@@ -49,3 +54,4 @@ df %>%
 
 ```
 
+*Data obtained from [Paris Opendata portal](https://opendata.paris.fr/page/home/)*
