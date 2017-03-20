@@ -14,7 +14,7 @@ knitr::opts_chunk$set(echo = FALSE)
 ### Paris Free Wifi Network
 
 Here below you can find an interactive map of Free public Wifi hotspots in Paris, France.  
-Hope it will be useful ;)
+Feel free to use it when you're around ;)
 ```{r}
 #libraries
 suppressWarnings(library(stringr))
@@ -46,10 +46,14 @@ wifiIcon <- makeIcon(
     #iconAnchorX = 31*215/230/2, iconAnchorY = 16
 )
 
+#popups
+hotSpotNames <- wifi_df$Nom.du.site
+
 df %>% 
     leaflet() %>% 
     addTiles() %>% 
     addMarkers(icon = wifiIcon, 
+               popup = hotSpotNames,
                clusterOptions = markerClusterOptions())
 
 ```
